@@ -22,13 +22,13 @@ Console.ForegroundColor = ConsoleColor.White;
 Console.WriteLine("\nResultados");
 Console.WriteLine($"{gen.Combinations.Count} jogos gerados contendo {of} numeros em cada:");
 
-//for (int i = 0; i < gen.Combinations.Count; i++)
-//{
-//    Console.ForegroundColor = i % 2 == 0 ? ConsoleColor.Green : ConsoleColor.Yellow;
-//    var gameFormated = gen.Combinations[i].Select(_ => _.ToString().PadLeft(2, '0'));
-//    Console.WriteLine(string.Join(", ", gameFormated));
-//}
-//Console.ForegroundColor = ConsoleColor.Gray;
+for (int i = 0; i < gen.Combinations.Count; i++)
+{
+   Console.ForegroundColor = i % 2 == 0 ? ConsoleColor.Green : ConsoleColor.Yellow;
+   var gameFormated = gen.Combinations[i].Select(_ => _.ToString().PadLeft(2, '0'));
+   Console.WriteLine(string.Join(", ", gameFormated));
+}
+Console.ForegroundColor = ConsoleColor.Gray;
 
 // ## Estatísticas
 Console.ForegroundColor = ConsoleColor.White;
@@ -46,4 +46,5 @@ foreach (var counts in sta.Counts)
     count++;
 }
 Console.ForegroundColor = ConsoleColor.Gray;
+Console.WriteLine();
 
