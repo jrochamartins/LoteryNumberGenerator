@@ -1,6 +1,6 @@
 ﻿using LoteryGenerator;
 
-Console.WriteLine("### BEM VINDO AO GERADOR DE JOGOS DE LOTERIA ###");
+Console.WriteLine("### GERADOR DE JOGOS DE LOTERIA ###");
 
 Console.Write("Quantos jogos? ");
 _ = int.TryParse(Console.ReadLine(), out int amount);
@@ -11,7 +11,7 @@ _ = int.TryParse(Console.ReadLine(), out int of);
 Console.Write("De um total de quantos números? ");
 _ = int.TryParse(Console.ReadLine(), out int from);
 
-var combinations = RandomCombinationSetGenerator.Generate(amount, of, from);
+var combinations = new RandomCombinationSet(of, from).Generate(amount);
 
 // Resultados
 Console.ForegroundColor = ConsoleColor.White;
@@ -21,8 +21,8 @@ var count = 0;
 foreach (var combination in combinations)
 {
     Console.ForegroundColor = count % 2 == 0 ? ConsoleColor.Green : ConsoleColor.Yellow;
-    var formated = combination.Select(n => n.ToString().PadLeft(2, '0'));
-    Console.WriteLine(string.Join(", ", formated));
+    var format = combination.Select(n => n.ToString().PadLeft(2, '0'));
+    Console.WriteLine(string.Join(", ", format));
     count++;
 }
 Console.ForegroundColor = ConsoleColor.Gray;
