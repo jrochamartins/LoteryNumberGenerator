@@ -4,25 +4,46 @@ Console.WriteLine("### GERADOR DE JOGOS DE LOTERIA ###");
 
 Console.Write("Quantos jogos? ");
 _ = int.TryParse(Console.ReadLine(), out int amount);
+if (amount <= 0) amount = 10;
 
 Console.Write("De quantos números, cada? ");
 _ = int.TryParse(Console.ReadLine(), out int of);
+if (of <= 0) of = 15;
 
 Console.Write("De um total de quantos números? ");
 _ = int.TryParse(Console.ReadLine(), out int from);
+if (from <= 0) from = 25;
 
 var combinations = new RandomCombinationSet(of, from).Generate(amount);
 
 // Resultados
 Console.ForegroundColor = ConsoleColor.White;
+var concurso2850 = new Result(new Combination { 01, 02, 06, 09, 11, 12, 14, 15, 16, 18, 19, 20, 22, 23, 24 });
+
 Console.WriteLine("\nResultados");
 Console.WriteLine(string.Format("{0} combinações geradas, contendo {1} número{2} em cada:", combinations.Count(), of, of > 1 ? "s" : ""));
+
 var count = 0;
 foreach (var combination in combinations)
 {
+    var hits = concurso2850.Hits(combination);
+    if (hits < 11) continue;
+
     Console.ForegroundColor = count % 2 == 0 ? ConsoleColor.Green : ConsoleColor.Yellow;
+
     var format = combination.Select(n => n.ToString().PadLeft(2, '0'));
-    Console.WriteLine(string.Join(", ", format));
+    Console.Write(string.Join(", ", format));
+
+    if (hits <= 10)
+        Console.WriteLine();
+    else
+    {
+        var oldCollor = Console.ForegroundColor;
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.WriteLine($" -> {hits} acertos");
+        Console.ForegroundColor = oldCollor;
+    }
+
     count++;
 }
 Console.ForegroundColor = ConsoleColor.Gray;
