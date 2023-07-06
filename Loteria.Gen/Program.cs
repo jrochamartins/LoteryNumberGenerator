@@ -14,7 +14,7 @@ Console.Write("De um total de quantos números? ");
 _ = int.TryParse(Console.ReadLine(), out int from);
 if (from <= 0) from = 25;
 
-var concurso2850 = new Result(new Combination { 01, 02, 06, 09, 11, 12, 14, 15, 16, 18, 19, 20, 22, 23, 24 });
+var concurso2850 = new Result(new Combination { 01, 02, 03, 04, 07, 08, 09, 10, 16, 17, 19, 21, 22, 23, 24 });
 
 var combinations = new RandomCombinationSet(of, from).Generate(amount);
 
@@ -27,7 +27,7 @@ var count = 0;
 foreach (var combination in combinations)
 {
     var hits = concurso2850.Hits(combination);
-    if (hits < 11) continue;
+    //if (hits < 11) continue;
 
     Console.ForegroundColor = count % 2 == 0 ? ConsoleColor.Green : ConsoleColor.Yellow;
 
