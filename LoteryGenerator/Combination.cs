@@ -9,14 +9,14 @@ namespace LoteryGenerator
         {
             get
             {
-                var source = Encoding.ASCII.GetBytes(string.Concat(this));
-                var sourceArray = MD5.HashData(source);
+                var source = Encoding.ASCII.GetBytes(ToString());
+                var sourceBytes = MD5.HashData(source);
 
                 int i;
-                var sOutput = new StringBuilder(sourceArray.Length);
-                for (i = 0; i < sourceArray.Length - 1; i++)
-                    sOutput.Append(sourceArray[i].ToString("X2"));
-                return sOutput.ToString();
+                var output = new StringBuilder(sourceBytes.Length);
+                for (i = 0; i < sourceBytes.Length - 1; i++)
+                    output.Append(sourceBytes[i].ToString("X2"));
+                return output.ToString();
             }
         }
 

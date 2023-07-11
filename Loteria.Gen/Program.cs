@@ -1,18 +1,16 @@
 ﻿using LoteryGenerator;
 
 Console.WriteLine("### GERADOR DE JOGOS DE LOTERIA ###");
-
 Console.Write("Quantos jogos? ");
 _ = int.TryParse(Console.ReadLine(), out int amount);
-if (amount <= 0) amount = 10;
-
 Console.Write("De quantos números, cada? ");
 _ = int.TryParse(Console.ReadLine(), out int of);
-if (of <= 0) of = 15;
-
 Console.Write("De um total de quantos números? ");
 _ = int.TryParse(Console.ReadLine(), out int from);
+
+if (amount <= 0) amount = 10;
 if (from <= 0) from = 25;
+if (of <= 0) of = 15;
 
 var concurso2850 = new Result(new Combination { 01, 02, 03, 04, 07, 08, 09, 10, 16, 17, 19, 21, 22, 23, 24 });
 
