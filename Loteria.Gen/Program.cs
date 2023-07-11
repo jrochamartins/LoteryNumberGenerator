@@ -20,30 +20,24 @@ var combinations = new RandomCombinationSet(of, from).Generate(amount);
 
 // Resultados
 Console.ForegroundColor = ConsoleColor.White;
-Console.WriteLine("\nResultados");
+Console.WriteLine($"{Environment.NewLine}Resultados");
 Console.WriteLine(string.Format("{0} combinações geradas, contendo {1} número{2} em cada:", combinations.Count(), of, of > 1 ? "s" : ""));
 
 var count = 0;
 foreach (var combination in combinations)
 {
-    var hits = concurso2850.Hits(combination);
-    //if (hits < 11) continue;
-
     Console.ForegroundColor = count % 2 == 0 ? ConsoleColor.Green : ConsoleColor.Yellow;
-
-    var format = combination.Select(n => n.ToString().PadLeft(2, '0'));
-    Console.Write(string.Join(", ", format));
-
-    if (hits <= 10)
-        Console.WriteLine();
-    else
+    Console.Write(combination);
+    var hits = concurso2850.Hits(combination);
+    if (hits > 10)
     {
         var oldCollor = Console.ForegroundColor;
         Console.ForegroundColor = ConsoleColor.Red;
         Console.WriteLine($" -> {hits} acertos");
         Console.ForegroundColor = oldCollor;
     }
-
+    else
+        Console.WriteLine();
     count++;
 }
 Console.ForegroundColor = ConsoleColor.Gray;
