@@ -10,11 +10,11 @@
             "request": "launch",
             "preLaunchTask": "build",
             // If you have changed target frameworks, make sure to update the program path.
-            "program": "${workspaceFolder}/Loteria.Gen/bin/Debug/net7.0/Loteria.Gen.dll",
+            "program": "${workspaceFolder}/Loteria.Gen/bin/Debug/net6.0/Loteria.Gen.dll",
             "args": [],
             "cwd": "${workspaceFolder}/Loteria.Gen",
             // For more information about the 'console' field, see https://aka.ms/VSCode-CS-LaunchJson-Console
-            "console": "internalConsole",
+            "console": "integratedTerminal",
             "stopAtEntry": false
         },
         {
