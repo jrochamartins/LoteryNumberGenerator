@@ -10,13 +10,13 @@
         {
             _of = of;
             _from = from;
-            Combinations = new();
+            Combinations = new SortedDictionary<string, Combination>();
         }
 
         public IEnumerable<Combination> Generate(int amount)
         {
             ISet<int> priority = new HashSet<int>();
-            for (int i = 0; i < amount; i++)
+            for (var i = 0; i < amount; i++)
             {
                 var set = new RandomCombination(_of, _from).With(priority).Generate();
                 if (Combinations.ContainsKey(set.Key)) continue;

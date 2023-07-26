@@ -2,7 +2,7 @@
 {
     public class RandomCombination : Combination
     {
-        private static readonly Random _rand = new();
+        private static readonly Random Rand = new();
 
         private readonly int _of;
         private readonly int _from;
@@ -20,15 +20,19 @@
 
         public RandomCombination With(ISet<int> priority)
         {
-            if (priority?.Any() ?? false)
+            if (priority == null) 
+                throw new ArgumentNullException(nameof(priority));
+
+            if (priority.Any())
                 _priority.UnionWith(priority);
+
             return this;
         }
 
         public RandomCombination Generate()
         {
             HashSet<int> fromSet = new();
-            for (int i = 0; i < _of; i++)
+            for (var i = 0; i < _of; i++)
             {
                 if (!fromSet.Any())
                     fromSet.UnionWith(Enumerable.Range(1, _from));
@@ -36,7 +40,7 @@
                 if (!_priority.Any())
                     _priority.UnionWith(fromSet);
 
-                var index = _rand.Next(_priority.Count);
+                var index = Rand.Next(_priority.Count);
                 var value = _priority.ElementAt(index);
                 Add(value);
 

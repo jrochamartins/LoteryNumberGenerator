@@ -5,7 +5,7 @@ VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Loteria.Gen", "Loteria.Gen\Loteria.Gen.csproj", "{BF3644B8-DEF8-46B2-9CA3-2AB8606483C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LoteryGenerator", "LoteryGenerator\LoteryGenerator.csproj", "{92B0FE1E-79F9-4EB2-AC1C-492F92A6FB95}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LoteryGenerator", "LoteryGenerator\LoteryGenerator.csproj", "{92B0FE1E-79F9-4EB2-AC1C-492F92A6FB95}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

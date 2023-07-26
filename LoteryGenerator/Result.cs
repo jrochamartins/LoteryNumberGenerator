@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace LoteryGenerator
+﻿namespace LoteryGenerator
 {
     public class Result
     {

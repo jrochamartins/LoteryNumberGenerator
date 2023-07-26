@@ -22,8 +22,8 @@ namespace LoteryGenerator
 
         public override string ToString()
         {
-            var formated = this.Select(_ => _.ToString().PadLeft(2, '0'));
-            return string.Join(", ", formated);
+            var formatted = this.Select(_ => _.ToString().PadLeft(2, '0'));
+            return string.Join(", ", formatted);
         }
     }
 }
