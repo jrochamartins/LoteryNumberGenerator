@@ -12,8 +12,7 @@ if (amount <= 0) amount = 10;
 if (from <= 0) from = 25;
 if (of <= 0) of = 15;
 
-var concurso2850 = new Result(new Combination { 01, 02, 03, 04, 07, 08, 09, 10, 16, 17, 19, 21, 22, 23, 24 });
-
+var concursoReferencia = new Result(new Combination { 01, 02, 03, 04, 07, 08, 09, 10, 16, 17, 19, 21, 22, 23, 24 });
 var combinations = new RandomCombinationSetFactory(of, from).Generate(amount).ToArray();
 
 // Resultados
@@ -26,7 +25,7 @@ foreach (var combination in combinations)
 {
     Console.ForegroundColor = count % 2 == 0 ? ConsoleColor.Green : ConsoleColor.Yellow;
     Console.Write(combination);
-    var hits = concurso2850.Hits(combination);
+    var hits = concursoReferencia.Hits(combination);
     if (hits > 10)
     {
         var oldCollor = Console.ForegroundColor;
