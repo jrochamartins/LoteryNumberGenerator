@@ -1,11 +1,11 @@
 ﻿using LoteryGenerator;
 
-Console.WriteLine("### GERADOR DE JOGOS DE LOTERIA ###");
-Console.Write("Quantos jogos? ");
+Console.WriteLine("### GERADOR DE COMBINAÇÕES DE LOTERIA ###");
+Console.Write("Quantas combinações (padão: 10)?  ");
 _ = int.TryParse(Console.ReadLine(), out var amount);
-Console.Write("De quantos números, cada? ");
+Console.Write("De quantos números, cada combinação (padão: 15)? ");
 _ = int.TryParse(Console.ReadLine(), out var of);
-Console.Write("De um total de quantos números? ");
+Console.Write("De um total de quantos números (padão: 25)? ");
 _ = int.TryParse(Console.ReadLine(), out var from);
 
 if (amount <= 0) amount = 10;
@@ -14,7 +14,7 @@ if (of <= 0) of = 15;
 
 var concurso2850 = new Result(new Combination { 01, 02, 03, 04, 07, 08, 09, 10, 16, 17, 19, 21, 22, 23, 24 });
 
-var combinations = new RandomCombinationSet(of, from).Generate(amount).ToArray();
+var combinations = new RandomCombinationSetFactory(of, from).Generate(amount).ToArray();
 
 // Resultados
 Console.ForegroundColor = ConsoleColor.White;
