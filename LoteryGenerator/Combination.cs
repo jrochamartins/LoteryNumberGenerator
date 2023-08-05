@@ -1,5 +1,4 @@
-﻿using System.Security.Cryptography;
-using System.Text;
+﻿using System.Text;
 
 namespace LoteryGenerator
 {
@@ -10,13 +9,8 @@ namespace LoteryGenerator
             get
             {
                 var source = Encoding.ASCII.GetBytes(ToString());
-                var sourceBytes = MD5.HashData(source);
-
-                int i;
-                var output = new StringBuilder(sourceBytes.Length);
-                for (i = 0; i < sourceBytes.Length - 1; i++)
-                    output.Append(sourceBytes[i].ToString("X2"));
-                return output.ToString();
+                var hash = new Force.Crc32.Crc32Algorithm().ComputeHash(source);
+                return Convert.ToBase64String(hash);
             }
         }
 
