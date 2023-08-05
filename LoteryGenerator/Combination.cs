@@ -18,7 +18,7 @@ namespace LoteryGenerator
 
             var source = Encoding.ASCII.GetBytes(ToString());
             var hash = new Force.Crc32.Crc32Algorithm().ComputeHash(source);
-            _key = Convert.ToBase64String(hash);
+            _key = BitConverter.ToString(hash);
 
             return _key;
         }
