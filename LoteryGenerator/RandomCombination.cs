@@ -31,10 +31,10 @@
 
         public RandomCombination Generate()
         {
-            HashSet<int> fromSet = new();
+            HashSet<int> fromSet = [];
             for (var i = 0; i < _of; i++)
             {
-                if (!fromSet.Any())
+                if (fromSet.Count == 0)
                     fromSet.UnionWith(Enumerable.Range(1, _from));
 
                 if (!_priority.Any())
