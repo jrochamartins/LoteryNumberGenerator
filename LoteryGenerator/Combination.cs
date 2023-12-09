@@ -4,6 +4,8 @@ namespace LoteryGenerator
 {
     public class Combination : SortedSet<int>
     {
+        private const string SEPARATOR = ", ";
+
         private string? _key;
 
         /// <summary>
@@ -26,7 +28,7 @@ namespace LoteryGenerator
         public override string ToString()
         {
             var formatted = this.Select(_ => _.ToString().PadLeft(2, '0'));
-            return string.Join(", ", formatted);
+            return string.Join(SEPARATOR, formatted);
         }
     }
 }
