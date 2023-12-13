@@ -1,41 +1,42 @@
 ﻿using LoteryGenerator;
 
-Console.WriteLine("### GERADOR DE COMBINAÇÕES DE LOTERIA ###");
+Console.WriteLine("### GERADOR DE JOGOS DE LOTERIA ###");
 
 // Parameters
-Console.Write("Quantas combinações (padão: 10)?  ");
+Console.Write("Quantos jogos deseja gerar (padão: 10)?  ");
 _ = int.TryParse(Console.ReadLine(), out var amount);
 if (amount <= 0) amount = 10;
-Console.Write("De quantos números, em cada combinação (padão: 15)? ");
+Console.Write("De quantos números, em cada jogo (padão: 15)? ");
 _ = int.TryParse(Console.ReadLine(), out var of);
 if (of <= 0) of = 15;
-Console.Write("De um total de quantos números (padão: 25)? ");
+Console.Write("Quantos números são possíveis de ser escolhidos (padão: 25)? ");
 _ = int.TryParse(Console.ReadLine(), out var from);
 if (from <= 0) from = 25;
 
 // Generate
 var combinations = new RandomCombinationSetFactory(of, from)
-    .Generate(amount)
-    .ToArray();
+    .Generate(amount).ToArray();
 
 // Results
 Console.WriteLine($"{Environment.NewLine}Resultados");
 Console.WriteLine($"{combinations.Length} combinaç{(amount > 1 ? "ões" : "ão")} gerada{(amount > 1 ? "s" : "")}, contendo {of} número{(of > 1 ? "s" : "")}{(amount > 1 ? " em cada uma:" : ":")}");
 
-Combination reference = [04, 06, 08, 09, 10, 12, 13, 14, 15, 16, 18, 19, 20, 21, 24];
+
+var checker = new ResultChecker([09, 20, 18, 07, 13, 22, 05, 11, 06, 03, 24, 14, 10, 08, 25]);
 for (int i = 0; i < combinations.Length; i++)
 {
-    Console.ForegroundColor = i % 2 == 0 ? ConsoleColor.Green : ConsoleColor.Yellow;
+    Console.ForegroundColor = i % 2 == 0
+        ? ConsoleColor.Green
+        : ConsoleColor.Yellow;
     Console.Write(combinations[i]);
-    var result = new ResultChecker(combinations[i], reference);    
-    if (result.PercentageOfSucess <= 70)
+
+    // Hits
+    if (checker.PercentageOfSucess(combinations[i]) > 66)
     {
-        Console.WriteLine();
-        continue;
+        Console.ForegroundColor = ConsoleColor.Red;
+        Console.Write($" -> {checker.Hits(combinations[i])} acertos");
     }
-    var oldCollor = Console.ForegroundColor;
-    Console.ForegroundColor = ConsoleColor.Red;
-    Console.WriteLine($" -> {result.Hits} acertos");
-    Console.ForegroundColor = oldCollor;
+
+    Console.WriteLine();
 }
 Console.ForegroundColor = ConsoleColor.Gray;

@@ -1,27 +1,17 @@
 ﻿namespace LoteryGenerator
 {
-    public class ResultChecker
+    public class ResultChecker(Combination result)
     {
-        public int Hits => _hits;
-        private readonly int _hits;
+        private readonly Combination _result = result;
 
-        public double PercentageOfSucess => _percentageOfSucess;
-        private readonly double _percentageOfSucess;
-
-        public ResultChecker(Combination attempt, Combination result)
-        {
-            _hits = CalculateHits(attempt, result);
-            _percentageOfSucess = CalculatePercentageOfSucess(attempt);
-        }
-
-        private static int CalculateHits(Combination attempt, Combination result)
+        public int Hits(Combination attempt)
         {
             var attemptSet = new SortedSet<int>(attempt);
-            attemptSet.IntersectWith(result);
+            attemptSet.IntersectWith(_result);
             return attemptSet.Count;
         }
 
-        public double CalculatePercentageOfSucess(Combination attempt) =>
-            _hits * 100 / attempt.Count;
+        public double PercentageOfSucess(Combination attempt) =>
+            Hits(attempt) * 100 / _result.Count;
     }
 }
