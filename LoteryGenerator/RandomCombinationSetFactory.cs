@@ -1,15 +1,9 @@
 ﻿namespace LoteryGenerator
 {
-    public class RandomCombinationSetFactory
+    public class RandomCombinationSetFactory(int of, int from)
     {
-        private readonly int _of;
-        private readonly int _from;
-
-        public RandomCombinationSetFactory(int of, int from)
-        {
-            _of = of;
-            _from = from;
-        }
+        private readonly int _of = of;
+        private readonly int _from = from;
 
         public IEnumerable<Combination> Generate(int amount)
         {
@@ -22,9 +16,9 @@
                     .With(priority)
                     .Generate();
 
-                if (combinations.ContainsKey(set.Key()))
+                if (combinations.ContainsKey(set.Key))
                     continue;
-                combinations.Add(set.Key(), set);
+                combinations.Add(set.Key, set);
 
                 set.Share(out priority);
             }

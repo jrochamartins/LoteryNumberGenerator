@@ -1,20 +1,10 @@
 ﻿namespace LoteryGenerator
 {
-    public class RandomCombination : Combination
+    public class RandomCombination(int of, int from) : Combination
     {
-        private readonly int _of;
-        private readonly int _from;
-        private readonly HashSet<int> _priority;
-
-        public RandomCombination(int of, int from)
-        {
-            if (from < of)
-                throw new ArgumentException("Number of possible numbers cannot be less than the number of items in the combination");
-
-            _of = of;
-            _from = from;
-            _priority = [];
-        }
+        private readonly int _of = of;
+        private readonly int _from = from;
+        private readonly HashSet<int> _priority = [];
 
         public RandomCombination With(ISet<int> priority)
         {
