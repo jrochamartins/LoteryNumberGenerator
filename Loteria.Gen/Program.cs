@@ -4,13 +4,16 @@ Console.WriteLine("### GERADOR DE JOGOS DE LOTERIA ###");
 
 // Parameters
 Console.Write("Quantos jogos deseja gerar (padão: 10)?  ");
-if (!int.TryParse(Console.ReadLine(), out var amount)) amount = 10;
+if (!int.TryParse(Console.ReadLine(), out var amount))
+    amount = 10;
 
 Console.Write("De quantos números, em cada jogo (padão: 15)? ");
-if (!int.TryParse(Console.ReadLine(), out var of)) of = 15;
+if (!int.TryParse(Console.ReadLine(), out var of))
+    of = 15;
 
 Console.Write("Quantos números são possíveis de ser escolhidos (padão: 25)? ");
-if (!int.TryParse(Console.ReadLine(), out var from)) from = 25;
+if (!int.TryParse(Console.ReadLine(), out var from))
+    from = 25;
 
 // Generate
 var combinations = new RandomCombinationSetFactory(of, from)
