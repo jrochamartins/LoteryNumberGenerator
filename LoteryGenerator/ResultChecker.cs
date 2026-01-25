@@ -5,8 +5,7 @@
         private readonly Combination _result = result;
         private readonly int _minToWin = minToWin;
 
-
-		public int Hits(Combination attempt)
+        public int Hits(Combination attempt)
         {
             var attemptSet = new SortedSet<int>(attempt);
             attemptSet.IntersectWith(_result);
